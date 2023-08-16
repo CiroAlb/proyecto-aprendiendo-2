@@ -1,9 +1,10 @@
 import React, { useContext } from 'react';
 
-// Importamos el contexto
-import MyContext from 'App'; // Asegúrate de proporcionar la ruta correcta
+// Importamos el context
+import MyContext from 'App'; // ruta correcta??
 
 const Resultados = () => {
+  //useContext 
   const {
     inputValue,
     setInputValue,
@@ -15,13 +16,16 @@ const Resultados = () => {
     setSelectedCityCoordinates
   } = useContext(MyContext);
 
+  //input asincrono?
   const handleInputChange = async (e) => {
     const value = e.target.value;
     setInputValue(value);
 
     if (value.length >= 3) {
       try {
+        //llamada a la api luego de tres caracteres y limite de 10 ciudades
         const response = await fetch(`http://geodb-free-service.wirefreethought.com/v1/geo/places?namePrefix=${value}&limit=10`);
+        //responde un json
         const data = await response.json();
         setCities(data.data);
       } catch (error) {
@@ -32,6 +36,7 @@ const Resultados = () => {
     }
   };
 
+  //click
   const handleCityClick = async (city) => {
     setSelectedCity(city);
     setInputValue(city.name);
