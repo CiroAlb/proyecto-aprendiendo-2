@@ -26,9 +26,11 @@ const MainTemperatura = () => {
     const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${selectedCityCoordinates.latitud}&lon=${selectedCityCoordinates.longitud}&appid=${apiKey}&units=metric`;
 
     useEffect(() => {
-        fetch(apiUrl)
-          .then(response => response.json())
-          .then(data => {
+        const fetchData = async () => {
+          try {
+            const response = await fetch(apiUrl);
+            const data = await response.json();
+    
             setTemperatura(data.main.temp);
             setSensacionTermica(data.main.feels_like);
             setDiaYHora(new Date(data.dt * 1000));
@@ -36,10 +38,12 @@ const MainTemperatura = () => {
             setTemperaturaMaxima(data.main.temp_max);
             setPorcentajeLluvia(data.porcentajeLluvia);
             setwWeatherDescription(data.weather[0].description);
-          })
-          .catch(error => {
+          } catch (error) {
             console.error('Error fetching weather data:', error);
-          });
+          }
+        };
+    
+        fetchData();
       }, [apiUrl]);
     
       return (
