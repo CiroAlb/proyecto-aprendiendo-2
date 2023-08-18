@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 
 // Importamos el context
-import MyContext from 'App'; // ruta correcta??
+import {MyContext} from '../App'; // ruta correcta??
 
 const Resultados = () => {
   //useContext 
