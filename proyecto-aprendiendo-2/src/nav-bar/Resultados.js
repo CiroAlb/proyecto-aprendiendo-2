@@ -55,7 +55,7 @@ const Resultados = () => {
   };
 
   return (
-    <div className="relative w-64">
+    <div className="relative w-2/3 ml-11 mt-1 ">
       <input
         type="text"
         value={inputValue}

@@ -2,6 +2,9 @@ import React, { createContext, useState, useEffect } from 'react';
 import './App.css';
 import Resultados from './nav-bar/Resultados';
 import MainTemperatura from './barra-lateral/MainTemperatura';
+import RellenoSuperior from './relleno/RellenoSuperior';
+import RellenoInferior from './relleno/RellenoInferior';
+
 
 // Creo el contexto
 export const MyContext = createContext();
@@ -20,18 +23,12 @@ function App() {
   const [diaYHora,setDiaYHora] = useState('');
   const [temperaturaMinima,setTemperaturaMinima] = useState('');
   const [temperaturaMaxima,setTemperaturaMaxima] = useState('');
-  const [porcentajeLluvia,setPorcentajeLluvia] = useState('');
-  const [weatherDescription,setwWatherDescription] = useState('');
-  const [uv,setUv] = useState('');
   const [viento,setViento] = useState('');
-  const [amanecer,setAmanecer] = useState('');
-  const [atardecer,setAtardecer] = useState('');
   const [visibilidad,setVisibilidad] = useState('');
   const [humedad,setHumedad] = useState('');
-  const [temperaturaManana,setTemperaturaManana] = useState('');
-  const [temperaturaMediodia,setTemperaturaMediodia] = useState('');
-  const [temperaturaTarde,setTemperaturaTarde] = useState('');
-  const [temperaturaNoche,setTemperaturaNoche] = useState('');
+  const [presion, setPresion] = useState('');
+  const [nubes, setNubes] = useState('');
+  const [icono,setIcono] = useState('');
 
 //Meto todo en un objeto 
   const contextCityValues = {
@@ -53,40 +50,35 @@ function App() {
     setTemperaturaMinima,
     temperaturaMaxima,
     setTemperaturaMaxima,
-    porcentajeLluvia,
-    setPorcentajeLluvia,
-    weatherDescription,
-    setwWatherDescription,
-    uv,
-    setUv,
     viento,
     setViento,
-    amanecer,
-    setAmanecer,
-    atardecer,
-    setAtardecer,
     visibilidad,
     setVisibilidad,
     humedad,
     setHumedad,
-    temperaturaManana,
-    setTemperaturaManana,
-    temperaturaMediodia,
-    setTemperaturaMediodia,
-    temperaturaTarde,
-    setTemperaturaTarde,
-    temperaturaNoche,
-    setTemperaturaNoche,
+    presion, 
+    setPresion,
+    nubes, 
+    setNubes,
+    icono,
+    setIcono,
   };
 
 
   return (
-    //Armo el provider
     <MyContext.Provider value={contextCityValues}>
-      <div className="App flex justify-center items-center min-h-screen ">
-        <div className="">
-          <Resultados />
-          <MainTemperatura/>
+      <div className="App flex h-screen">
+        <div className="w-1/4 bg-orange-300 ">
+          {/* Componente MainTemperatura */}
+          <MainTemperatura />
+        </div>
+        <div className="w-3/4">
+          {/* Componente Resultados */}
+          <header className="bg-blue-200 ">
+            <Resultados className="w-1/2 bg-black" />
+          </header>
+          <RellenoSuperior className='h-1/2 bg-slate-500' />
+          <RellenoInferior className='h-1/2 bg-blue-400' />
         </div>
       </div>
     </MyContext.Provider>

@@ -62,18 +62,25 @@ const MainTemperatura = () => {
       };
     
       return (
-        <div>
-          <p>Temperatura: {temperatura}{isMetric ? '°C' : '°F'}</p>
-          <p>Sensación Térmica: {sensacionTermica}{isMetric ? '°C' : '°F'}</p>
-          <p>{diaYHora.toLocaleString()}</p>
-          <p>Min: {temperaturaMinima}{isMetric ? '°C' : '°F'}</p>
-          <p>Max: {temperaturaMaxima}{isMetric ? '°C' : '°F'}</p>
-          <p>Porcentaje de Lluvia: {porcentajeLluvia}%</p> {/*No sirve*/}
-          <p>Descripción del Clima: {weatherDescription}</p>{/*No sirve*/}
-          <button onClick={toggleUnits}>
-        Toggle Units ({isMetric ? 'Metrico' : 'Imperial'})
-      </button>
-        </div>
+        <div className="flex flex-col h-screen">
+ <div className="imagen h-1/3 flex items-center justify-center bg-black">
+  <img src="https://images.ecestaticos.com/N3JjurhbDcmw18aK8fHlkyPPZBo=/4x110:2119x1302/1200x900/filters:fill(white):format(jpg)/f.elconfidencial.com%2Foriginal%2F566%2F166%2Fe24%2F566166e242c19971965461dca9509292.jpg" alt="Imagen" className="w-3/4 h-3/4 rounded-full border-4 border-gray-500" />
+</div>
+  <div className=" text-center bg-orange-600">
+    <p className="text-8xl">{temperatura}{isMetric ? '°C' : '°F'}</p>
+  </div>
+  <div className="flex-grow mt-6 ml-4 bg-blue-600">
+    <p className='text-xl'>Térmica: {sensacionTermica}{isMetric ? '°C' : '°F'}</p>
+    <p className='text-xl'>{diaYHora.toLocaleString()}</p>
+    <p className='text-xl'>Min: {temperaturaMinima}{isMetric ? '°C' : '°F'}</p>
+    <p className='text-xl'>Max: {temperaturaMaxima}{isMetric ? '°C' : '°F'}</p>
+    {/*<p>Porcentaje de Lluvia: {porcentajeLluvia}%</p> {/*No sirve*/}
+    {/*<p>Descripción del Clima: {weatherDescription}</p>{/*No sirve*/}
+  </div>
+  <button onClick={toggleUnits} className="mt-4">
+    Toggle Units ({isMetric ? 'Metrico' : 'Imperial'})
+  </button>
+</div>
       );
 
 }
